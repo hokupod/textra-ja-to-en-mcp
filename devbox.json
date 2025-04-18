@@ -1,0 +1,14 @@
+{
+  "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.14.1/.schema/devbox.schema.json",
+  "packages": ["python@3.13.2"],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null"
+    ],
+    "scripts": {
+      "test": [
+        "uv run pytest tests/"
+      ]
+    }
+  }
+}
