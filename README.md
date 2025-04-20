@@ -31,13 +31,27 @@ This server is built using the `fastmcp` framework.
     uv pip install '.[dev]'
     ```
     (Dependencies are installed based on `pyproject.toml`.)
-4.  **Create configuration file:**
-    Copy the example `.env.example` file to `.env` and fill in your textra API credentials. See `.env.example` for required values.
+4.  **Set Environment Variables:**
+    This server **requires** the following environment variables to be set with your Textra API credentials:
+    *   `TEXTRA_API_KEY`: Your Textra API Key.
+    *   `TEXTRA_API_SECRET`: Your Textra API Secret.
+    *   `TEXTRA_USER_NAME`: Your Textra Login ID.
+
+    It is **strongly recommended** to set these variables in your shell's configuration file (e.g., `~/.bashrc`, `~/.zshrc`, `~/.config/fish/config.fish`) rather than using a `.env` file. This ensures the variables are available when the MCP server is run by client applications.
+
+    Example for `.zshrc` or `.bashrc`:
     ```bash
-    cp .env.example .env
-    # Edit the .env file to set your API key, secret, and username
+    export TEXTRA_API_KEY="your_api_key"
+    export TEXTRA_API_SECRET="your_api_secret"
+    export TEXTRA_USER_NAME="your_username"
     ```
-    *Note: `.env` is included in `.gitignore` and should not be committed.*
+    Remember to source the file (e.g., `source ~/.zshrc`) or restart your shell after adding these lines.
+
+    *Optional Variables:*
+    *   `TEXTRA_JA_EN_API_URL`: Overrides the default translation API endpoint.
+    *   `TEXTRA_TOKEN_URL`: Overrides the default OAuth token endpoint.
+
+    *(See `.env.example` for variable names and default values. While using a `.env` file is possible for local development, especially with `fastmcp dev`, setting system-wide environment variables is more robust for MCP server deployment.)*
 
 ## Running Tests
 
@@ -53,7 +67,7 @@ uv run test
 
 ## Usage
 
-Ensure your virtual environment is activated and the `.env` file is correctly configured with your Textra API credentials.
+Ensure your virtual environment is activated and the **required environment variables** (`TEXTRA_API_KEY`, `TEXTRA_API_SECRET`, `TEXTRA_USER_NAME`) are correctly set in your shell environment.
 
 ### Running the Server Locally
 
